@@ -2,6 +2,51 @@
 
 import { useState } from "react";
 
+// CSS 变量文本
+const cssVariables = `/* 地图项目 Design System Variables */
+
+:root {
+  /* Colors - Text */
+  --color-text-primary: #222423;
+  --color-text-secondary: #858c88;
+  --color-text-tertiary: #6f6d73;
+  --color-primary: #232224;
+
+  /* Colors - Background */
+  --color-bg-gray: #f7f7f7;
+  --color-bg-light-gray: #f1f0f2;
+  --color-white-90: rgba(255, 255, 255, 0.9);
+
+  /* Colors - Accent */
+  --color-accent-purple-1: #555cd6;
+  --color-accent-purple-2: #8149f2;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 14px;
+  --spacing-2xl: 16px;
+  --spacing-3xl: 20px;
+  --spacing-4xl: 24px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-full: 100px;
+
+  /* Shadows */
+  --shadow-sm: 0px 2px 12px 0px rgba(0, 0, 0, 0.16);
+  --shadow-lg: 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+
+  /* Effects */
+  --blur-backdrop: 8px;
+
+  /* Typography */
+  --font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}`;
+
 // 颜色数据
 const textColors = [
   { name: "Text Primary", value: "#222423" },
@@ -75,6 +120,17 @@ const navItems = [
 
 export default function DesignSpec() {
   const [activeNav, setActiveNav] = useState("colors");
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(cssVariables);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("复制失败:", err);
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-white">
@@ -346,58 +402,32 @@ export default function DesignSpec() {
 
           {/* CSS Variables Section */}
           <section id="variables" className="mb-12">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">💻</span>
-              <h2 className="text-2xl font-semibold">CSS 变量</h2>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">💻</span>
+                <h2 className="text-2xl font-semibold">CSS 变量</h2>
+              </div>
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-2 px-4 py-2 bg-[#37352f] text-white rounded-lg hover:bg-[#555] transition-colors text-sm font-medium"
+              >
+                {copied ? (
+                  <>
+                    <span>✓</span>
+                    <span>已复制</span>
+                  </>
+                ) : (
+                  <>
+                    <span>📋</span>
+                    <span>复制 CSS 变量</span>
+                  </>
+                )}
+              </button>
             </div>
             <div className="ml-7">
               <div className="bg-[#f7f6f3] border border-[#e9e9e7] rounded p-4 overflow-x-auto text-[13px]">
                 <pre className="font-mono leading-relaxed text-[#37352f]">
-                  <code>
-{`/* 地图项目 Design System Variables */
-
-:root {
-  /* Colors - Text */
-  --color-text-primary: #222423;
-  --color-text-secondary: #858c88;
-  --color-text-tertiary: #6f6d73;
-  --color-primary: #232224;
-
-  /* Colors - Background */
-  --color-bg-gray: #f7f7f7;
-  --color-bg-light-gray: #f1f0f2;
-  --color-white-90: rgba(255, 255, 255, 0.9);
-
-  /* Colors - Accent */
-  --color-accent-purple-1: #555cd6;
-  --color-accent-purple-2: #8149f2;
-
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 6px;
-  --spacing-md: 8px;
-  --spacing-lg: 12px;
-  --spacing-xl: 14px;
-  --spacing-2xl: 16px;
-  --spacing-3xl: 20px;
-  --spacing-4xl: 24px;
-
-  /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-full: 100px;
-
-  /* Shadows */
-  --shadow-sm: 0px 2px 12px 0px rgba(0, 0, 0, 0.16);
-  --shadow-lg: 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
-
-  /* Effects */
-  --blur-backdrop: 8px;
-
-  /* Typography */
-  --font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
-}`}
-                  </code>
+                  <code>{cssVariables}</code>
                 </pre>
               </div>
             </div>
