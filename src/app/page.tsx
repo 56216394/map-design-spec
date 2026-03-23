@@ -325,9 +325,10 @@ export default function DesignSpec() {
             </div>
             <div className="ml-7">
               <div
-                className="flex items-center p-5 rounded mb-3 bg-cover bg-center"
+                className="flex items-center p-5 rounded mb-3 bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage: "url('/effect-bg.png')",
+                  minHeight: "120px",
                 }}
               >
                 <div className="px-8 py-4 bg-white/90 backdrop-blur-lg rounded shadow-lg font-medium">
