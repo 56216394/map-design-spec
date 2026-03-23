@@ -327,7 +327,7 @@ export default function DesignSpec() {
               <div
                 className="flex items-center p-5 rounded mb-3 bg-cover bg-center"
                 style={{
-                  backgroundImage: "url('https://maas-log-prod.cn-wlcb.ufileos.com/anthropic/76efbbe4-9780-4ce0-8fc6-de958f34af4a/425d2a837db3e1bd527c6a6a1d738957.png')",
+                  backgroundImage: "url('/effect-bg.png')",
                 }}
               >
                 <div className="px-8 py-4 bg-white/90 backdrop-blur-lg rounded shadow-lg font-medium">
